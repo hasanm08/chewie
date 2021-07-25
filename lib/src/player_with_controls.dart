@@ -5,10 +5,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
+import 'package:subtitle_wrapper_package/subtitle_controller.dart';
+import 'package:subtitle_wrapper_package/subtitle_wrapper_package.dart';
 
 class PlayerWithControls extends StatelessWidget {
-  const PlayerWithControls({Key? key}) : super(key: key);
-
+  const PlayerWithControls({Key? key, this.subtitleUrl})
+      : super(key: key);
+  final String? subtitleUrl;
   @override
   Widget build(BuildContext context) {
     final ChewieController chewieController = ChewieController.of(context);
@@ -39,7 +42,11 @@ class PlayerWithControls extends StatelessWidget {
             child: AspectRatio(
               aspectRatio: chewieController.aspectRatio ??
                   chewieController.videoPlayerController.value.aspectRatio,
-              child: VideoPlayer(chewieController.videoPlayerController),
+              child: SubTitleWrapper(
+                videoChild: VideoPlayer(chewieController.videoPlayerController),
+                videoPlayerController: chewieController.videoPlayerController,
+                subtitleController: SubtitleController(),
+              ),
             ),
           ),
           chewieController.overlay ?? Container(),
