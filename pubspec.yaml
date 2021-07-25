@@ -12,11 +12,9 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^5.0.0
+  subtitle_wrapper_package: ^2.0.1
   video_player: ^2.1.5
   wakelock: ^0.5.2
-  subtitle_wrapper_package:
-    git:
-      url: https://github.com/hasanm08/flutter_subtitle_wrapper.git
 
 dev_dependencies:
   flutter_test:
